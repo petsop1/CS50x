@@ -1,4 +1,0 @@
-ask user how tall should pyramid be <1; 8>
-loop no 1 until values is between allowed interval
-for given height do loop
-    where for each row  will be printed increasing number of hashtags up to given height
