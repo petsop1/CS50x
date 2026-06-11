@@ -1,0 +1,19 @@
+Times:
+
+10 simulations: 0m0.031s
+100 simulations: 0m0.029s
+1000 simulations: 0m0.037s
+10000 simulations: 0m0.098s
+100000 simulations: 0m0.767s
+1000000 simulations: 0m7.196s
+
+Questions:
+
+Which predictions, if any, proved incorrect as you increased the number of simulations?:
+
+N = 10000 didnt provide stable results. Brazil and Belgium were change its positions randomly. If N = 100000 Belgium was after 10 tries always the winner.
+
+Suppose you're charged a fee for each second of compute time your program uses.
+After how many simulations would you call the predictions "good enough"?: TODO
+
+After N = 100 simulations are results quite good, no "weak" teams amoung 3 best possitions.
