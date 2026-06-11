@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>Trivia!</title>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                let rightButtons = document.getElementsByClassName("right");
+                let wrongButtons = document.getElementsByClassName("wrong");
+                let finalText = document.getElementById("finalText");
+
+                for (let i = 0; i < rightButtons.length; i++) {
+                    rightButtons[i].addEventListener("click", function() {
+                        this.style.backgroundColor = "green";
+                        finalText.textContent = "Correct!";
+                        finalText.style.color = "green";
+                    });
+                }
+
+                for (var i = 0; i < wrongButtons.length; i++) {
+                    wrongButtons[i].addEventListener("click", function() {
+                        this.style.backgroundColor = "red";
+                        finalText.textContent = "Incorrect!";
+                        finalText.style.color = "red";
+                    });
+                }
+            });
+
+            document.addEventListener("DOMContentLoaded", function() {
+                var inputElement = document.getElementById("capitalInput");
+                var checkAnswerButton = document.getElementById("checkAnswerButton");
+                var resultMessage = document.getElementById("resultMessage");
+
+                checkAnswerButton.addEventListener("click", function() {
+                    var userInput = inputElement.value.trim();
+                    if (userInput === "Bratislava") {
+                        resultMessage.textContent = "Correct!";
+                        resultMessage.style.color = "green";
+                    } else {
+                        resultMessage.textContent = "Incorrect!";
+                        resultMessage.style.color = "red";
+                    }
+                });
+            });
+        </script>
+    </head>
+
+    <body>
+        <div class="header">
+            <h1>Trivia!</h1>
+        </div>
+
+        <div class="container">
+            <div class="section">
+                <h2>Part 1: Multiple Choice </h2>
+                <hr>
+                <h3>Which country is known as the Land of the Rising Sun</h3>
+                <h3 id="finalText"></h3>
+                <button class="wrong">Slovakia</button>
+                <button class="wrong">France</button>
+                <button class="wrong">India</button>
+                <button class="right">Japan</button>
+            </div>
+
+            <div class="section">
+                <h2>Part 2: Free Response</h2>
+                <hr>
+                <h3>What is capital city of Slovakia</h3>
+                <h3 id="resultMessage"></h3>
+                <input id="capitalInput" placeholder="Enter your answer...">
+                <button id="checkAnswerButton">Check Answer</button>
+            </div>
+        </div>
+    </body>
+</html>

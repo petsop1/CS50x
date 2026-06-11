@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="/static/styles.css" rel="stylesheet">
+        <title>Birthdays</title>
+    </head>
+    <body>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        <div class="container-fluid text-center">
+            {% for message in messages %}
+            <div class="alert alert-{{ message[0] }}">
+                {{ message[1] }}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% endwith %}
+
+        <div class="header">
+            <h1>Birthdays</h1>
+        </div>
+        <div class="container">
+            <div class="section">
+                <h2>Add a Birthday</h2>
+                <!-- TODO: Create a form for users to submit a name, a month, and a day -->
+                <form action="/" method="post">
+                    <input autocomplete="off" autofocus name="name" placeholder="Name" type="text">
+                    <input autocomplete="off" name="day" placeholder="Day" type="number" min="1" max="31" step="1">
+                    <input autocomplete="off" name="month" placeholder="Month" type="number" min="1.00" max="12.00" step="1">
+                    <button type="submit">Save</button>
+                </form>
+            </div>
+
+            <div class="section">
+                <h2>All Birthdays</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="border">Name</th>
+                            <th class="border">Birthday</th>
+                            <th class="border">Options</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- TODO: Loop through the database entries to display them in this table -->
+                        {% for person in birthdays %}
+                            <tr>
+                                <td> {{ person.name }} </td>
+                                <td> {{ person.day }}/{{ person.month }} </td>
+                                <td>
+                                    <form class="d-inline" action="/" method="post">
+                                        <input type="hidden" name="action" value="delete">
+                                        <input type="hidden" name="id" value="{{ person.id }}">
+                                        <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                                    </form>
+
+                                    <form class="d-inline">
+                                        <button class="btn btn-warning btn-sm" type="button" data-bs-toggle="modal" data-bs-target="#modal{{ person.id }}">Edit</button>
+                                    </form>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="modal{{ person.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Edit entry</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+
+                                                <div class="modal-body">
+                                                    <form id="edit-form{{ person.id }}" action="/" method="post">
+                                                        <div class="form-row py-2">
+                                                            <label for="name">Name</label>
+                                                            <input autocomplete="off" name="new_name"  value="{{ person.name }}" type="text">
+                                                        </div>
+                                                        <div class="form-row py-2">
+                                                            <label for="day">Day</label>
+                                                            <input autocomplete="off" name="new_day" value="{{ person.day }}" step="1" min="1" max="31" type="number">
+                                                        </div>
+                                                        <div class="form-row py-2 ">
+                                                            <label for="month">Month</label>
+                                                            <input autocomplete="off" name="new_month" value="{{ person.month }}" step="1" min="1.00" max="12.00" type="number">
+                                                        </div>
+                                                        <input type="hidden" name="action" value="edit">
+                                                        <input type="hidden" name="id" value="{{ person.id }}">
+                                                    </form>
+                                                </div>
+
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                    <button type="submit" form="edit-form{{ person.id }}" class="btn btn-primary">Save changes</button>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    </body>
+</html>

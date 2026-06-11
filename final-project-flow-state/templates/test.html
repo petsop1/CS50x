@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block login_join %}
+<div class="d-flex" style="height: 100vh;">
+  <div id="joinBgPic" class="flex-fill move-to-back" style="flex: 3; background-size: cover; background-position: center;"></div>
+
+  <div class="flex-fill " style="flex: 3;">
+    <div class="text-center mt-5 mb-4 h5">Welcome! Start your journey with us by registering.</div>
+    <form action="/register" method="post" class="flex-column">
+      <div class="mb-3 flex-fill">
+        <input autocomplete="off" autofocus class="form-control" id="username" name="username" placeholder="Username" type="text">
+      </div>
+      <div class="mb-3 flex-fill">
+        <input class="form-control" id="password" name="password" placeholder="Password" type="password">
+      </div>
+      <div class="mb-3 flex-fill">
+        <input class="form-control" id="confirmation" name="confirmation" placeholder="Confirm your password" type="password">
+      </div>
+      <div class="mb-3 flex-fill text-center">
+        <button class="btn btn-primary w-100" type="submit">Join</button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}
+
