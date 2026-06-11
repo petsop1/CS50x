@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Sell
+{% endblock %}
+
+{% block main %}
+
+    <form action="/sell" method="post">
+        <div class="mb-3">
+
+            <select required autofocus class="form-select mx-auto w-auto mb-3" name="symbol" aria-label="Default select example">
+            <option selected disabled>Choose from the available stocks</option>
+            {% for symbol in unique_symbols %}
+                <option value="{{ symbol['symbol']|safe }}"> {{ symbol["symbol"].upper() }} </option>
+            {% endfor %}
+            </select>
+
+            <input autocomplete="off" class="form-control mx-auto w-auto mb-3" id="shares" name="shares" placeholder="Number of sheres" type="number" pattern="[1-9]\d*" title="Only possitive integers allowed" min="1" step="1" required>
+            
+        </div>
+        <button class="btn btn-primary" type="submit">Sell</button>
+    </form>
+
+{% endblock %}
