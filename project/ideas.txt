@@ -1,0 +1,63 @@
+1.  ze email specific to systemair riesiť až ked to budem integrovať, 
+    zatial to nechat take otvorenejsie, ak by to testovali v CS50x
+
+    ngrok - už som prihlaseny
+    
+
+
+
+    The code seems to be mostly fine, but there are a few things that might be worth looking into:
+
+Repeated calls to makeItemsDraggable(): This function is called every time an item is dropped into the main area. If the function is expensive to run, this could cause performance issues. It might be better to only call this function when a new item is added to the draggableItems array.
+
+Manipulation of draggableItems array: The draggableItems array is being manipulated in several places, which could lead to unexpected behavior. It might be better to treat this array as read-only and create a new array when you need to add or remove items.
+
+Use of element-inside attribute: The element-inside attribute is used to track where an item is currently located. This could potentially be replaced with a more robust system that tracks the state of each item.
+
+Use of id attribute: The id attribute is being used to store the original id of an item, which could lead to conflicts if an item with the same id is added to the DOM. It might be better to use a data attribute for this purpose.
+
+Error handling: There doesn't seem to be much error handling in the code. For example, what happens if document.getElementById(originalParentId) or document.getElementById(originalNextSiblingId) returns null? It might be a good idea to add some error handling to prevent unexpected behavior.
+
+Code comments: While there are some comments in the code, they could be more descriptive. Good comments can make the code easier to understand and maintain.
+
+Code organization: The code could be better organized. For example, the code for handling the start, move, and end of a drag operation could be moved into separate functions. This would make the code easier to read and maintain.
+
+Use of var: The code uses var to declare variables, which is generally discouraged in modern JavaScript. It might be better to use let or const instead.
+
+
+
+
+
+
+
+
+
+
+
+This JavaScript code is using the Interact.js library to make certain elements draggable and droppable. Here's a step-by-step explanation:
+
+draggableItems is an array of IDs of elements that should be draggable.
+
+makeItemsDraggable function is used to make each item in draggableItems draggable. It uses the interact function from the Interact.js library to make each item draggable. It also sets up event handlers for when the drag starts (onstart), when the item is being dragged (onmove), and when the drag ends (onend).
+
+getNewId function is used to generate a new ID for a dragged item. It increments a counter for each draggable item and appends it to the ID.
+
+interact('.main').dropzone sets up a dropzone in the element with the class main. It handles the drop event and checks if the dropped item is in the draggableItems array. If the item was dragged from the sidebar, it creates a new table and appends the item to it. If the item was dragged from a table, it keeps the same ID.
+
+interact('.tabulator-col-group-cols').dropzone sets up a dropzone in the table headers. It handles the drop event and checks if the dropped item is in the draggableItems array. If it is, it inserts a new column at the index where the item was dropped.
+
+Recommendations:
+
+The code is quite long and complex. It could be broken down into smaller, more manageable functions. This would make it easier to understand and maintain.
+
+There are a lot of magic numbers and strings in the code. These could be replaced with named constants to make the code more readable and easier to change in the future.
+
+There are several commented out lines of code. If these are not needed, they should be removed to reduce clutter.
+
+There are several console.log statements. These are useful for debugging, but they should be removed or replaced with a proper logging mechanism for production code.
+
+The code does not have any error handling. It would be good to add some try-catch blocks and handle potential errors gracefully.
+
+The code could benefit from some comments explaining what each part of the code does. This would make it easier for other developers to understand and work with the code.
+
+inma 

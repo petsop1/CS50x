@@ -1,0 +1,11 @@
+cs50
+Flask
+Flask-Session
+requests
+
+
+
+
+# Added by me:
+(pip install email-validator)
+email-validator   (https://pypi.org/project/email-validator/)
