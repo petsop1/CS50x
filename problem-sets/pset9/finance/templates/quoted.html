@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quoted
+{% endblock %}
+
+{% block main %}
+
+    <h2 class="container text-start ps-0 pb-5">This is quoted table</h2>
+
+    <table class="container table table-striped table-hover">
+        <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Price</th>
+              <th scope="col">Symbol</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ data["symbol"] }}</td>
+                <td>{{ data["price"] | usd }}</td>
+                <td>{{ data["symbol"] }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+{% endblock %}
